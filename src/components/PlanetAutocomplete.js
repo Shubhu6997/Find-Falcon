@@ -33,36 +33,34 @@ const PlanetAutocomplete = ({
     return(
         <div>
             <form>
-            <div>
-                <input
-                value={planet}
-                onChange={handlePlanet}
-                list={destinationNo} 
-                name={destinationNo}/>
-                <datalist
-                id={destinationNo}>
-                {
-                   filteredPlanets?.map(item => <option key={item.name} value={item.name}/>)
-                } 
-                </datalist>
-            </div>
+                <div>
+                    <input
+                    value={planet}
+                    onChange={handlePlanet}
+                    list={destinationNo} 
+                    name={destinationNo}/>
+                    <datalist
+                    id={destinationNo}>
+                    {
+                       filteredPlanets?.map(item => <option key={item.name} value={item.name}/>)
+                    } 
+                    </datalist>
+                </div>
             </form>
             {planet ? 
                 <div>
                     {
                         vehiclesDetails.map((v) => {
                             return (
-                                <div>
+                                <div key={v.name}>
                                     <input 
                                     type="radio" 
-                                    disabled = {planetDistance > v?.max_distance}
+                                    disabled={planetDistance > v?.max_distance}
                                     id={v.name} 
                                     name={destinationNo} 
                                     value={v.name}
-                                    onChange = {handleVehicle} />
-                                    <label
-                                    >{`${v.name}(${v.total_no})`}
-                                    </label>
+                                    onChange={handleVehicle} />
+                                    <label>{`${v.name}(${v.total_no})`}</label>
                                 </div>
                             )
                         })  
